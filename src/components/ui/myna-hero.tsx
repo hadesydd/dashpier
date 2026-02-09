@@ -8,72 +8,142 @@ import {
   Activity,
   ArrowRight,
   BarChart,
+  Briefcase,
+  Calendar,
   Check,
   ChevronRight,
   FileText,
-  Menu,
+  Heart,
+  Mail,
+  MessageSquare,
   Play,
   RefreshCw,
+  Send,
   Sparkles,
   Star,
+  Target,
+  Users,
   Wand2,
   Zap,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
+import { PillBase } from "./3d-adaptive-navigation-bar";
 import ShinyText from "./shiny-text";
+import SpotlightCard from "./spotlight-card";
 
-const navigationItems = [
-  { title: "FEATURES", href: "#" },
-  { title: "HOW IT WORKS", href: "#" },
-  { title: "PRICING", href: "#" },
-  { title: "ABOUT", href: "#" },
+const useCases = [
+  {
+    icon: Briefcase,
+    title: "Job Applications",
+    description:
+      "Craft compelling cover letters and follow-up emails that get noticed by recruiters and hiring managers.",
+    examples: ["Cover letters", "Thank you notes", "Interview follow-ups", "Withdrawal emails"],
+  },
+  {
+    icon: Users,
+    title: "Networking",
+    description:
+      "Reach out to connections with personalized messages that spark conversations and build relationships.",
+    examples: ["LinkedIn outreach", "Cold introductions", "Mentorship requests", "Informational interviews"],
+  },
+  {
+    icon: Target,
+    title: "Sales & Business",
+    description: "Write persuasive cold emails and sales outreach that convert prospects into customers.",
+    examples: ["Cold outreach", "Product pitches", "Proposal follow-ups", "Partnership proposals"],
+  },
+  {
+    icon: Calendar,
+    title: "Scheduling & Meetings",
+    description: "Professional meeting requests and scheduling emails that get quick confirmations.",
+    examples: ["Meeting requests", "Interview scheduling", "Demo bookings", "Consultation setups"],
+  },
+  {
+    icon: Heart,
+    title: "Customer Support",
+    description: "Respond to customer inquiries with empathy and clarity while maintaining brand voice.",
+    examples: ["Support responses", "Complaint resolutions", "Refund requests", "Feature feedback"],
+  },
+  {
+    icon: MessageSquare,
+    title: "Personal & Professional",
+    description: "Handle everyday email needs from Apology letters to celebration messages with the right tone.",
+    examples: ["Apology letters", "Congratulations", "Condolences", "Thank you notes"],
+  },
 ];
 
 const features = [
   {
-    icon: BarChart,
-    label: "High Accuracy",
-    description: "Our advanced AI models ensure your content passes all major AI detectors with 99% accuracy.",
+    icon: Wand2,
+    label: "AI-Powered Writing",
+    description: "Simply describe what you want to achieve, and our AI crafts the perfect email draft in seconds.",
+  },
+  {
+    icon: Target,
+    label: "40+ Tone Options",
+    description: "From formal to casual, empathetic to assertive - choose the tone that fits every situation.",
   },
   {
     icon: Zap,
-    label: "Lightning Fast",
-    description: "Transform your AI-generated text into human-like content in seconds, not minutes.",
+    label: "Instant Generation",
+    description: "Get professional email drafts in under 3 seconds. No more staring at blank screens.",
   },
   {
-    icon: Activity,
-    label: "Natural Flow",
-    description: "Preserve the original meaning while adding natural language patterns and variations.",
+    icon: FileText,
+    label: "50+ Email Templates",
+    description: "Pre-built templates for every scenario - from job applications to difficult conversations.",
   },
+  {
+    icon: RefreshCw,
+    label: "Unlimited Revisions",
+    description: "Regenerate and refine until your email is perfect. No limits on how many times you edit.",
+  },
+  {
+    icon: BarChart,
+    label: "Context Awareness",
+    description: "Our AI understands your context and tailors length, formality, and approach accordingly.",
+  },
+];
+
+const tones = [
+  { name: "Professional", color: "from-blue-500 to-indigo-600" },
+  { name: "Friendly", color: "from-green-500 to-emerald-600" },
+  { name: "Formal", color: "from-slate-600 to-slate-800" },
+  { name: "Casual", color: "from-orange-500 to-amber-600" },
+  { name: "Empathetic", color: "from-pink-500 to-rose-600" },
+  { name: "Assertive", color: "from-red-500 to-crimson-600" },
+  { name: "Persuasive", color: "from-purple-500 to-violet-600" },
+  { name: "Apologetic", color: "from-gray-500 to-gray-600" },
 ];
 
 const steps = [
   {
     number: "01",
-    icon: FileText,
-    title: "Paste Your Content",
-    description: "Simply paste your AI-generated text into our editor. We support all types of content.",
+    icon: Mail,
+    title: "Describe Your Need",
+    description:
+      "Tell us what email you need - apply for a job, follow up on a sale, apologize for a delay, or anything else.",
   },
   {
     number: "02",
-    icon: Wand2,
-    title: "Choose Your Style",
-    description: "Select from Standard, Academic, or Casual modes to match your target audience.",
+    icon: Target,
+    title: "Choose Your Tone",
+    description:
+      "Select from 40+ tones - professional, friendly, empathetic, assertive, or customize to match your voice.",
   },
   {
     number: "03",
-    icon: RefreshCw,
-    title: "Instant Transformation",
-    description: "Our AI analyzes and rewrites your content to sound naturally human in seconds.",
+    icon: Wand2,
+    title: "Get Your Draft",
+    description: "Our AI generates a polished email draft in seconds, ready to send or further customize.",
   },
   {
     number: "04",
-    icon: Check,
-    title: "Copy & Use",
-    description: "Get your humanized text with a confidence score. Copy, download, or use it directly.",
+    icon: Send,
+    title: "Send with Confidence",
+    description: "Review, make any final tweaks, and send your professional email knowing it's impactf.",
   },
 ];
 
@@ -81,41 +151,61 @@ const pricingPlans = [
   {
     name: "Free",
     price: 0,
-    description: "Perfect for trying out the service",
-    features: ["500 words per month", "Standard mode", "Basic support", "1 result at a time"],
+    description: "Perfect for trying out and occasional email needs",
+    features: ["50 emails per month", "10 tone options", "Basic templates", "Email length control", "Standard support"],
     highlighted: false,
-    cta: "Get Started",
+    cta: "Start Free",
   },
   {
     name: "Pro",
     price: 19,
-    description: "Best for content creators",
+    description: "Best for professionals who write emails daily",
     features: [
-      "50,000 words per month",
-      "All modes (Standard, Academic, Casual)",
+      "Unlimited emails",
+      "All 40+ tones",
+      "50+ templates",
+      "Custom tone blending",
+      "Save favorite drafts",
       "Priority support",
-      "Batch processing",
-      "Confidence scores",
-      "Export options",
+      "Export to Gmail/Outlook",
     ],
     highlighted: true,
     cta: "Start Free Trial",
   },
   {
-    name: "Enterprise",
-    price: 99,
-    description: "For teams and businesses",
+    name: "Team",
+    price: 49,
+    description: "For teams and departments that need consistency",
     features: [
-      "Unlimited words",
-      "All modes + Custom modes",
-      "Dedicated support",
+      "Everything in Pro",
+      "5 team members",
+      "Brand voice settings",
+      "Shared templates",
+      "Team analytics",
       "API access",
-      "Team collaboration",
+      "Dedicated support",
       "Custom integrations",
-      "Analytics dashboard",
     ],
     highlighted: false,
     cta: "Contact Sales",
+  },
+];
+
+const testimonials = [
+  {
+    quote: "This tool saved me hours of staring at a blank screen. I wrote my entire job application in 5 minutes.",
+    author: "Sarah M.",
+    role: "Marketing Manager",
+  },
+  {
+    quote: "As someone who hates difficult conversations, this helped me write an apology email that actually worked.",
+    author: "David K.",
+    role: "Small Business Owner",
+  },
+  {
+    quote: "Our sales team saw a 40% increase in response rates after switching to emails generated by this tool.",
+    author: "Lisa R.",
+    role: "Sales Director",
   },
 ];
 
@@ -128,75 +218,57 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
   const [isYearly, setIsYearly] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  const sections = ["home", "use-cases", "features", "how-it-works", "pricing"];
 
   useEffect(() => {
     if (isInView) {
       controls.start("visible");
     }
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections.reverse()) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            if (section !== "home") {
+              setActiveSection(section);
+            } else {
+              setActiveSection("home");
+            }
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [controls, isInView]);
 
   return (
     <div className="min-h-screen bg-white text-[#1A1A1A]">
-      <header className="fixed top-0 right-0 left-0 z-50 border-b border-black/5 bg-white/80 backdrop-blur-md">
-        <div className="container mx-auto px-4">
-          <div className="flex h-16 items-center justify-between">
-            <a href="#" className="flex items-center gap-2">
-              <div className="flex items-center space-x-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-[#FF6B2C] to-[#FF8F5A]">
-                  <Sparkles className="h-5 w-5 text-white" />
-                </div>
-                <span className="font-mono text-xl font-bold">Humanize AI</span>
-              </div>
-            </a>
+      <header className="fixed top-6 left-1/2 z-50 -translate-x-1/2">
+        <div className="flex items-center gap-8">
+          <span className="font-mono text-2xl font-bold tracking-tight">
+            Dash<span className="text-[#FF6B2C]">Pier</span>
+          </span>
 
-            <nav className="hidden items-center space-x-8 md:flex">
-              {navigationItems.map((item) => (
-                <a
-                  key={item.title}
-                  href={item.href}
-                  className="font-mono text-sm text-[#1A1A1A]/70 transition-colors hover:text-[#FF6B2C]"
-                >
-                  {item.title}
-                </a>
-              ))}
-            </nav>
+          <PillBase activeSection={activeSection} onSectionChange={setActiveSection} className="cursor-pointer" />
 
-            <div className="flex items-center space-x-4">
-              <Button
-                variant="default"
-                onClick={onGetStarted}
-                className="hidden rounded-none bg-[#FF6B2C] font-mono text-sm hover:bg-[#FF6B2C]/90 md:inline-flex"
-              >
-                GET STARTED <ArrowRight className="ml-1 h-4 w-4" />
-              </Button>
-              <Sheet>
-                <SheetTrigger asChild>
-                  <Button variant="ghost" size="icon" className="text-[#1A1A1A] md:hidden">
-                    <Menu className="h-5 w-5" />
-                  </Button>
-                </SheetTrigger>
-                <SheetContent className="border-black/5 bg-white">
-                  <nav className="mt-6 flex flex-col gap-6">
-                    {navigationItems.map((item) => (
-                      <a
-                        key={item.title}
-                        href={item.href}
-                        className="font-mono text-sm text-[#1A1A1A]/70 transition-colors hover:text-[#FF6B2C]"
-                      >
-                        {item.title}
-                      </a>
-                    ))}
-                    <Button
-                      className="w-full cursor-pointer rounded-none bg-[#FF6B2C] font-mono hover:bg-[#FF6B2C]/90"
-                      onClick={onGetStarted}
-                    >
-                      GET STARTED <ArrowRight className="ml-1 h-4 w-4" />
-                    </Button>
-                  </nav>
-                </SheetContent>
-              </Sheet>
-            </div>
-          </div>
+          <Button
+            variant="default"
+            onClick={onGetStarted}
+            className="rounded-full bg-[#FF6B2C] px-6 py-2.5 font-mono text-xs font-bold shadow-lg shadow-[#FF6B2C]/25 transition-all hover:bg-[#FF6B2C]/90 hover:shadow-xl hover:shadow-[#FF6B2C]/30"
+          >
+            START WRITING
+          </Button>
         </div>
       </header>
 
@@ -214,11 +286,11 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               >
                 <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#FF6B2C]/20 bg-[#FF6B2C]/10 px-4 py-2">
                   <Sparkles className="h-4 w-4 text-[#FF6B2C]" />
-                  <span className="font-mono text-sm text-[#FF6B2C]">AI Detection Safe</span>
+                  <span className="font-mono text-sm text-[#FF6B2C]">Used by 100,000+ professionals</span>
                 </div>
                 <h1 className="mx-auto max-w-4xl font-mono text-5xl leading-tight font-bold sm:text-6xl md:text-7xl lg:text-8xl">
                   <ShinyText
-                    text="HUMANIZE YOUR AI TEXT"
+                    text="WRITE PERFECT EMAILS"
                     speed={3}
                     shineColor="#FF6B2C"
                     color="#1A1A1A"
@@ -227,7 +299,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                     className="mb-4 block"
                   />
                   <ShinyText
-                    text="INSTANTLY"
+                    text="IN SECONDS"
                     speed={4}
                     shineColor="#FF6B2C"
                     color="#1A1A1A"
@@ -245,7 +317,8 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="mx-auto mt-8 max-w-2xl font-mono text-lg text-[#1A1A1A]/60 md:text-xl"
               >
-                Transform robotic AI content into natural, authentic human writing that bypasses all AI detectors.
+                Stop struggling with every email. Just describe what you need, choose your tone, and get a professional
+                email draft instantly. From job applications to difficult conversations - we've got you covered.
               </motion.p>
 
               <motion.div
@@ -259,7 +332,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                   onClick={onGetStarted}
                   className="cursor-pointer rounded-none bg-[#FF6B2C] px-10 py-6 font-mono text-lg font-bold transition-all hover:bg-[#FF6B2C]/90 hover:shadow-xl hover:shadow-[#FF6B2C]/25"
                 >
-                  START HUMANIZING <ArrowRight className="ml-2 h-5 w-5" />
+                  WRITE YOUR FIRST EMAIL <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
@@ -286,7 +359,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 </div>
                 <div className="flex items-center gap-2">
                   <Activity className="h-4 w-4 text-[#FF6B2C]" />
-                  <span>Works with any AI content</span>
+                  <span>3-second delivery</span>
                 </div>
               </motion.div>
 
@@ -303,35 +376,61 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                       <div className="h-3 w-3 rounded-full bg-yellow-400" />
                       <div className="h-3 w-3 rounded-full bg-green-400" />
                     </div>
-                    <span className="ml-2 font-mono text-xs text-[#1A1A1A]/40">humanize-ai.app</span>
+                    <span className="ml-2 font-mono text-xs text-[#1A1A1A]/40">mynamail.app/editor</span>
                   </div>
                   <div className="grid divide-y divide-black/10 md:grid-cols-2 md:divide-x md:divide-y-0">
                     <div className="bg-[#FAFAFA]/50 p-6">
                       <div className="mb-3 flex items-center gap-2">
-                        <FileText className="h-4 w-4 text-[#1A1A1A]/40" />
-                        <span className="font-mono text-xs text-[#1A1A1A]/40">AI Generated</span>
+                        <MessageSquare className="h-4 w-4 text-[#1A1A1A]/40" />
+                        <span className="font-mono text-xs text-[#1A1A1A]/40">Your input</span>
                       </div>
-                      <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/60">
-                        The rapid advancement of artificial intelligence presents both unprecedented opportunities and
-                        significant challenges for modern society.
-                      </p>
+                      <div className="space-y-3 font-mono text-sm leading-relaxed text-[#1A1A1A]/60">
+                        <p className="rounded-lg border border-[#FF6B2C]/20 bg-[#FF6B2C]/10 p-3">
+                          <span className="font-semibold text-[#FF6B2C]">Idea:</span> Write a follow-up email to a
+                          recruiter after interviewing last week. Keep it professional but friendly, show enthusiasm
+                          without being pushy.
+                        </p>
+                        <p className="rounded-lg border border-blue-200 bg-blue-50 p-3">
+                          <span className="font-semibold text-blue-600">Tone:</span> Professional & Friendly
+                        </p>
+                      </div>
                     </div>
                     <div className="relative p-6">
                       <div className="absolute inset-0 bg-gradient-to-br from-[#FF6B2C]/5 to-[#FF8F5A]/5" />
                       <div className="relative z-10">
                         <div className="mb-3 flex items-center gap-2">
-                          <Sparkles className="h-4 w-4 text-[#FF6B2C]" />
-                          <span className="font-mono text-xs text-[#FF6B2C]">Humanized</span>
+                          <Mail className="h-4 w-4 text-[#FF6B2C]" />
+                          <span className="font-mono text-xs text-[#FF6B2C]">Generated Email</span>
                         </div>
-                        <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]">
-                          Technology has evolved at a breathtaking pace, opening doors we never imagined while
-                          preserving authentic human creativity.
-                        </p>
+                        <div className="space-y-2 font-mono text-sm leading-relaxed text-[#1A1A1A]">
+                          <p className="font-semibold text-[#1A1A1A]">
+                            Subject: Great Speaking With You - Following Up
+                          </p>
+                          <p>Dear [Recruiter Name],</p>
+                          <p>
+                            Thank you so much for taking the time to meet with me last week about the [Position] role. I
+                            really enjoyed learning more about the team and the exciting projects you're working on.
+                          </p>
+                          <p>
+                            I wanted to reiterate my enthusiasm for this opportunity. The company's mission and the
+                            team's culture really resonate with my career goals. I'd love the chance to contribute to
+                            [specific project mentioned].
+                          </p>
+                          <p>
+                            Please let me know if you need any additional information from me. I look forward to hearing
+                            from you!
+                          </p>
+                          <p className="text-[#1A1A1A]/60">
+                            Best regards,
+                            <br />
+                            [Your Name]
+                          </p>
+                        </div>
                         <div className="mt-4 flex items-center gap-2">
                           <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500 font-mono text-xs text-white">
-                            99%
+                            <Check className="h-4 w-4" />
                           </div>
-                          <span className="font-mono text-xs text-green-600">Human Score</span>
+                          <span className="font-mono text-xs text-green-600">Ready to send</span>
                         </div>
                       </div>
                     </div>
@@ -343,7 +442,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 2.5, duration: 0.6 }}
-                className="mt-24 flex flex-col items-center gap-4"
+                className="mt-8 flex flex-col items-center gap-4"
               >
                 <motion.div
                   animate={{ y: [0, 15, 0] }}
@@ -385,7 +484,207 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
           </div>
         </section>
 
-        <section className="relative overflow-hidden py-20">
+        <section id="use-cases" className="relative overflow-hidden bg-gradient-to-b from-white to-[#FF6B2C]/5 py-20">
+          <div className="absolute inset-0 bg-[#FF6B2C]/5" />
+          <div className="absolute top-0 left-1/2 h-full max-h-[600px] w-full max-w-4xl -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF6B2C]/10 via-[#FF8F5A]/5 to-[#FF6B2C]/10 blur-3xl" />
+          <div className="relative z-10 container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-16 text-center"
+            >
+              <ShinyText
+                text="EVERY EMAIL SCENARIO"
+                speed={4}
+                shineColor="#FF6B2C"
+                color="#1A1A1A"
+                spread={80}
+                yoyo={true}
+                className="mb-4 font-mono text-3xl font-bold md:text-4xl"
+              />
+              <p className="mx-auto max-w-2xl font-mono text-lg text-[#1A1A1A]/60">
+                From everyday professional communication to difficult conversations - handle any email situation with
+                confidence.
+              </p>
+            </motion.div>
+
+            <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+              {useCases.map((useCase, index) => (
+                <motion.div
+                  key={useCase.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                >
+                  <SpotlightCard glowColor="orange" className="h-full cursor-pointer !rounded-3xl p-0">
+                    <div className="h-full rounded-2xl border border-black/10 bg-white p-6">
+                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#FF6B2C]/10">
+                        <useCase.icon className="h-7 w-7 text-[#FF6B2C]" />
+                      </div>
+                      <h3 className="mb-3 font-mono text-xl font-bold">{useCase.title}</h3>
+                      <p className="mb-4 font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{useCase.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {useCase.examples.map((example) => (
+                          <span
+                            key={example}
+                            className="rounded-full bg-[#FF6B2C]/10 px-3 py-1 font-mono text-xs text-[#FF6B2C]"
+                          >
+                            {example}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-16 text-center"
+            >
+              <ShinyText
+                text="40+ TONES TO MATCH ANY SITUATION"
+                speed={4}
+                shineColor="#FF6B2C"
+                color="#1A1A1A"
+                spread={80}
+                yoyo={true}
+                className="mb-4 font-mono text-3xl font-bold md:text-4xl"
+              />
+              <p className="mx-auto max-w-2xl font-mono text-lg text-[#1A1A1A]/60">
+                Choose the perfect tone for every situation. From formal business correspondence to friendly follow-ups.
+              </p>
+            </motion.div>
+
+            <div className="mx-auto max-w-6xl">
+              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
+                {tones.map((tone, index) => (
+                  <motion.div
+                    key={tone.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.05, duration: 0.3 }}
+                    className="group cursor-pointer"
+                    onMouseEnter={() => setActiveTone(index)}
+                  >
+                    <div
+                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${tone.color} p-6 text-white transition-all duration-300 group-hover:shadow-lg group-hover:shadow-${tone.color.split("-")[1]}/30`}
+                    >
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                      <div className="relative z-10">
+                        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+                          <Mail className="h-5 w-5" />
+                        </div>
+                        <h3 className="font-mono text-lg font-bold">{tone.name}</h3>
+                        <p className="mt-2 font-mono text-xs opacity-80">
+                          {tone.name === "Professional" &&
+                            "Business correspondence, formal requests, workplace communication"}
+                          {tone.name === "Friendly" && "Casual updates, team messages, relaxed professional tone"}
+                          {tone.name === "Formal" && "Legal documents, official requests, academic correspondence"}
+                          {tone.name === "Casual" && "Peer communication, quick updates, internal team messages"}
+                          {tone.name === "Empathetic" &&
+                            "Customer support, difficult situations, showing understanding"}
+                          {tone.name === "Assertive" && "Setting boundaries, urgent requests, standing your ground"}
+                          {tone.name === "Persuasive" && "Sales pitches, proposals, convincing arguments"}
+                          {tone.name === "Apologetic" && "Service failures, mistakes, requesting understanding"}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* how-it-works section moved below */}
+
+        <section id="features" className="py-20" ref={ref}>
+          <div className="container mx-auto px-4">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.4, duration: 0.6 }}
+              className="mb-4 text-center font-mono text-3xl font-bold md:text-4xl"
+            >
+              Why DashPier?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.6, duration: 0.6 }}
+              className="mx-auto mb-12 max-w-2xl text-center font-mono text-lg text-[#1A1A1A]/60"
+            >
+              The only AI email writer designed to make every email you write more effective, professional, and
+              impactful.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 2.8, duration: 0.6 }}
+              className="mx-auto grid max-w-6xl gap-6 md:grid-cols-2 lg:grid-cols-3"
+            >
+              {features.map((feature, index) => (
+                <motion.div
+                  key={feature.label}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2.8 + index * 0.1, duration: 0.5 }}
+                >
+                  <SpotlightCard glowColor="orange" className="h-full cursor-pointer !rounded-2xl p-0">
+                    <div className="flex h-full flex-col items-center rounded-xl border border-black/10 bg-black/5 p-8 text-center">
+                      <div className="mb-6 rounded-2xl bg-[#FF6B2C]/10 p-4">
+                        <feature.icon className="h-8 w-8 text-[#FF6B2C]" />
+                      </div>
+                      <h3 className="mb-4 font-mono text-xl font-bold">{feature.label}</h3>
+                      <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/50">{feature.description}</p>
+                    </div>
+                  </SpotlightCard>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </section>
+
+        <section className="bg-[#F5F5F5] py-16">
+          <div className="container mx-auto px-4">
+            <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+              {testimonials.map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.author}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  className="rounded-2xl bg-white p-6 shadow-lg"
+                >
+                  <div className="mb-4 flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-[#FF6B2C] text-[#FF6B2C]" />
+                    ))}
+                  </div>
+                  <p className="mb-4 font-mono text-sm leading-relaxed text-[#1A1A1A]">"{testimonial.quote}"</p>
+                  <div>
+                    <p className="font-mono text-sm font-bold">{testimonial.author}</p>
+                    <p className="font-mono text-xs text-[#1A1A1A]/50">{testimonial.role}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="how-it-works" className="relative overflow-hidden py-20">
           <div className="absolute inset-0 bg-[#FF6B2C]/5" />
           <div className="absolute top-0 left-1/2 h-full max-h-[600px] w-full max-w-4xl -translate-x-1/2 rounded-full bg-gradient-to-r from-[#FF6B2C]/10 via-[#FF8F5A]/5 to-[#FF6B2C]/10 blur-3xl" />
           <div className="relative z-10 container mx-auto px-4">
@@ -405,7 +704,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 className="mb-4 font-mono text-3xl font-bold md:text-4xl"
               />
               <p className="mx-auto max-w-2xl font-mono text-[#1A1A1A]/60">
-                Transform AI content to human-like writing in four simple steps
+                Write professional emails in four simple steps - no more writer&apos;s block
               </p>
             </motion.div>
 
@@ -417,19 +716,19 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.15, duration: 0.5 }}
-                  className="group relative"
                 >
-                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#FF6B2C]/20 to-[#FF8F5A]/10 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative rounded-3xl border border-black/10 bg-white p-6 transition-colors hover:border-[#FF6B2C]/30">
-                    <div className="absolute -top-3 -right-3 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B2C] to-[#FF8F5A] shadow-lg">
-                      <span className="font-mono text-xs font-bold text-white">{step.number}</span>
+                  <SpotlightCard glowColor="orange" className="h-full cursor-pointer !rounded-3xl p-0">
+                    <div className="relative h-full rounded-2xl border border-black/10 bg-white p-6">
+                      <div className="absolute -top-3 -right-3 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B2C] to-[#FF8F5A] shadow-lg">
+                        <span className="font-mono text-xs font-bold text-white">{step.number}</span>
+                      </div>
+                      <div className="mt-2 mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#FF6B2C]/10">
+                        <step.icon className="h-7 w-7 text-[#FF6B2C]" />
+                      </div>
+                      <h3 className="mb-2 font-mono text-lg font-bold">{step.title}</h3>
+                      <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{step.description}</p>
                     </div>
-                    <div className="mt-2 mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#FF6B2C]/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-[#FF6B2C]/20">
-                      <step.icon className="h-7 w-7 text-[#FF6B2C]" />
-                    </div>
-                    <h3 className="mb-2 font-mono text-lg font-bold">{step.title}</h3>
-                    <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{step.description}</p>
-                  </div>
+                  </SpotlightCard>
                   {index < steps.length - 1 && (
                     <div className="absolute top-1/2 -right-6 z-20 hidden lg:flex">
                       <motion.div
@@ -459,22 +758,22 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                     <div className="h-3 w-3 rounded-full bg-yellow-400" />
                     <div className="h-3 w-3 rounded-full bg-green-400" />
                   </div>
-                  <span className="ml-2 font-mono text-xs text-[#1A1A1A]/40">humanizer demo</span>
+                  <span className="ml-2 font-mono text-xs text-[#1A1A1A]/40">mynamail.app/demo</span>
                 </div>
                 <div className="grid items-center gap-8 md:grid-cols-2">
                   <div className="space-y-4">
                     <div className="mb-2 flex items-center gap-2 text-[#FF6B2C]">
-                      <span className="font-mono text-xs font-semibold">INPUT</span>
+                      <span className="font-mono text-xs font-semibold">YOUR IDEA</span>
                     </div>
                     <div className="rounded-xl border border-black/10 bg-[#FAFAFA] p-4">
                       <p className="font-mono text-sm text-[#1A1A1A]/60">
-                        The rapid advancement of artificial intelligence presents both unprecedented opportunities and
-                        significant challenges for modern society. AI systems can process vast amounts of data and
-                        generate content at unprecedented speeds.
+                        &quot;I need to write a cold outreach email to a potential client about our marketing services.
+                        Keep it professional but not pushy. Mention we helped similar companies increase leads by
+                        40%.&quot;
                       </p>
                       <div className="mt-3 flex items-center gap-2">
                         <div className="h-px flex-1 bg-black/10" />
-                        <Sparkles className="h-4 w-4 text-[#FF6B2C]" />
+                        <Target className="h-4 w-4 text-[#FF6B2C]" />
                       </div>
                     </div>
                   </div>
@@ -484,27 +783,37 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                       transition={{ duration: 2, repeat: Infinity }}
                       className="absolute top-1/2 -left-12 hidden -translate-y-1/2 md:flex"
                     >
-                      <RefreshCw className="h-10 w-10 text-[#FF6B2C]" />
+                      <ArrowRight className="h-10 w-10 text-[#FF6B2C]" />
                     </motion.div>
                     <div className="space-y-4">
                       <div className="flex items-center gap-2 text-[#FF6B2C]">
-                        <span className="font-mono text-xs font-semibold">OUTPUT</span>
+                        <span className="font-mono text-xs font-semibold">READY-TO-SEND EMAIL</span>
                       </div>
                       <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
                         className="rounded-xl border border-[#FF6B2C]/20 bg-gradient-to-br from-[#FF6B2C]/5 to-[#FF8F5A]/5 p-4"
                       >
-                        <p className="font-mono text-sm text-[#1A1A1A]">
-                          Technology has evolved at a breathtaking pace, opening doors we never imagined. While AI tools
-                          can crunch numbers and spit out text lightning-fast, there's something irreplaceable about
-                          human creativity.
+                        <p className="font-semibold text-[#1A1A1A]">Subject: Quick Question About Your Marketing</p>
+                        <p className="mt-2 font-mono text-sm text-[#1A1A1A]">Hi [Name],</p>
+                        <p className="mt-2 font-mono text-sm text-[#1A1A1A]">
+                          I came across [Company] and was impressed by your recent growth. I have helped similar
+                          businesses in your space achieve remarkable results - one client saw a 40% increase in
+                          qualified leads within just 3 months.
+                        </p>
+                        <p className="mt-2 font-mono text-sm text-[#1A1A1A]">
+                          I would love to share some ideas that could work for you. Would you be open to a quick
+                          15-minute call this week?
+                        </p>
+                        <p className="mt-4 font-mono text-sm text-[#1A1A1A]/60">
+                          Best regards,
+                          <br />
+                          [Your Name]
                         </p>
                         <div className="mt-3 flex items-center gap-2">
                           <Check className="h-4 w-4 text-green-500" />
-                          <span className="font-mono text-xs text-green-600">99% Human Score</span>
+                          <span className="font-mono text-xs text-green-600">Professional & Persuasive</span>
                         </div>
                       </motion.div>
                     </div>
@@ -515,50 +824,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
           </div>
         </section>
 
-        <section className="py-20" ref={ref}>
-          <div className="container mx-auto px-4">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.4, duration: 0.6 }}
-              className="mb-4 text-center font-mono text-3xl font-bold md:text-4xl"
-            >
-              Why Choose Humanize AI?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.6, duration: 0.6 }}
-              className="mx-auto mb-12 max-w-2xl text-center font-mono text-[#1A1A1A]/60"
-            >
-              The most advanced AI humanization tool that preserves your content's intent while making it undetectable.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 2.8, duration: 0.6 }}
-              className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3"
-            >
-              {features.map((feature, index) => (
-                <motion.div
-                  key={feature.label}
-                  initial={{ opacity: 0, y: 50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.8 + index * 0.15, duration: 0.5 }}
-                  className="group flex flex-col items-center rounded-2xl border border-black/10 bg-black/5 p-8 text-center transition-colors hover:border-[#FF6B2C]/30"
-                >
-                  <div className="mb-6 rounded-2xl bg-[#FF6B2C]/10 p-4 transition-colors group-hover:bg-[#FF6B2C]/20">
-                    <feature.icon className="h-8 w-8 text-[#FF6B2C]" />
-                  </div>
-                  <h3 className="mb-4 font-mono text-xl font-bold">{feature.label}</h3>
-                  <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/50">{feature.description}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-
-        <section className="relative overflow-hidden py-24">
+        <section id="pricing" className="relative overflow-hidden py-24">
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#FF6B2C]/3 to-transparent" />
           <div className="absolute top-1/4 left-0 h-96 w-96 rounded-full bg-[#FF6B2C]/10 blur-3xl" />
           <div className="absolute right-0 bottom-1/4 h-96 w-96 rounded-full bg-[#FF8F5A]/10 blur-3xl" />
@@ -579,7 +845,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 className="mb-4 font-mono text-3xl font-bold md:text-4xl"
               />
               <p className="mx-auto max-w-2xl font-mono text-[#1A1A1A]/60">
-                Choose the plan that fits your needs. Start free, upgrade when ready.
+                Start free, upgrade when email writing becomes your superpower.
               </p>
             </motion.div>
 
@@ -650,7 +916,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                           <span className="font-mono text-[#1A1A1A]/40">/month</span>
                         </div>
                         {plan.highlighted && isYearly && (
-                          <p className="mt-1 font-mono text-xs text-green-600">Billed $95 yearly</p>
+                          <p className="mt-1 font-mono text-xs text-green-600">Billed $182 yearly</p>
                         )}
                       </div>
                       <ul className="mb-8 space-y-4">
@@ -698,12 +964,12 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               <div className="rounded-3xl border border-[#FF6B2C]/20 bg-gradient-to-r from-[#FF6B2C]/10 via-white to-[#FF6B2C]/10 p-8 text-center">
                 <div className="mb-4 flex items-center justify-center gap-2">
                   <Sparkles className="h-5 w-5 text-[#FF6B2C]" />
-                  <span className="font-mono text-sm font-semibold text-[#FF6B2C]">GUARANTEE</span>
+                  <span className="font-mono text-sm font-semibold text-[#FF6B2C]">SATISFACTION GUARANTEE</span>
                 </div>
-                <h3 className="mb-2 font-mono text-xl font-bold">30-Day Money Back Guarantee</h3>
+                <h3 className="mb-2 font-mono text-xl font-bold">Love Your Emails or It's Free</h3>
                 <p className="mx-auto max-w-xl font-mono text-[#1A1A1A]/60">
-                  Not satisfied? Get a full refund within 30 days, no questions asked. Your satisfaction is our
-                  priority.
+                  Try DashPier risk-free for 7 days. If you don't write better emails, cancel anytime. No questions, no
+                  hassle, no hard feelings.
                 </p>
               </div>
             </motion.div>
@@ -719,16 +985,17 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                 viewport={{ once: true }}
                 className="mb-8 font-mono text-3xl font-bold md:text-4xl"
               >
-                Ready to Humanize Your Content?
+                Ready to Write Better Emails?
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
-                className="mb-8 font-mono text-[#1A1A1A]/60"
+                className="mb-8 font-mono text-lg text-[#1A1A1A]/60"
               >
-                Join thousands of users who trust Humanize AI for their content needs.
+                Join 100,000+ professionals who never struggle with email again. From job applications to difficult
+                conversations - write with confidence.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -741,7 +1008,7 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
                   onClick={onGetStarted}
                   className="cursor-pointer rounded-none bg-[#FF6B2C] px-10 py-6 font-mono text-base hover:bg-[#FF6B2C]/90"
                 >
-                  GET STARTED FREE <ArrowRight className="ml-2 h-5 w-5" />
+                  START WRITING FREE <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </motion.div>
             </div>
@@ -754,11 +1021,13 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <div className="flex items-center gap-2">
               <div className="flex h-6 w-6 items-center justify-center rounded bg-gradient-to-br from-[#FF6B2C] to-[#FF8F5A]">
-                <Sparkles className="h-4 w-4 text-white" />
+                <Mail className="h-4 w-4 text-white" />
               </div>
-              <span className="font-mono text-sm font-bold">Humanize AI</span>
+              <span className="font-mono text-sm font-bold">DashPier</span>
             </div>
-            <p className="font-mono text-sm text-[#1A1A1A]/40">© 2024 Humanize AI. All rights reserved.</p>
+            <p className="font-mono text-sm text-[#1A1A1A]/40">
+              © 2025 DashPier. Write better emails, get better results.
+            </p>
           </div>
         </div>
       </footer>

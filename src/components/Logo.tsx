@@ -13,7 +13,7 @@ type LogoProps = {
 
 export function Logo({
   src = "/logo1.png",
-  alt = "Humanize AI",
+  alt = "DashPier - AI Email Writer",
   size = "h-10 w-10",
   rounded = false,
   className,

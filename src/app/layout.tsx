@@ -21,19 +21,19 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Humanize AI | Transform AI Text to Human-Like Writing",
-  description: "Transform robotic AI-generated text into natural, human-like prose. Perfect for essays, emails, and professional documents. Trusted by 50,000+ students & professionals.",
-  keywords: ["AI text humanizer", "humanize AI text", "AI to human text", "essay writer", "AI detection remover"],
-  authors: [{ name: "Humanize AI" }],
+  title: "DashPier | AI Email Writer - Write Perfect Emails in Seconds",
+  description: "Stop struggling with every email. Describe what you need, choose from 40+ tones, and get professional email drafts instantly. From job applications to difficult conversations. Trusted by 100,000+ professionals.",
+  keywords: ["AI email writer", "email generator", "professional email templates", "cover letter writer", "follow up email", "cold email template", "business email generator"],
+  authors: [{ name: "DashPier" }],
   openGraph: {
-    title: "Humanize AI | Transform AI Text to Human-Like Writing",
-    description: "Transform robotic AI-generated text into natural, human-like prose. Perfect for essays, emails, and professional documents.",
+    title: "DashPier | AI Email Writer - Write Perfect Emails in Seconds",
+    description: "Write professional emails in seconds with AI. Choose from 40+ tones for any situation - job applications, sales, customer service, and more.",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Humanize AI | Transform AI Text to Human-Like Writing",
-    description: "Transform robotic AI-generated text into natural, human-like prose. Trusted by 50,000+ students & professionals.",
+    title: "DashPier | AI Email Writer",
+    description: "Write perfect emails in seconds. 40+ tones, 50+ templates, trusted by 100,000+ professionals.",
   },
 };
 

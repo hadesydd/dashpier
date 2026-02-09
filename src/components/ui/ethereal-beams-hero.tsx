@@ -465,7 +465,7 @@ export default function EtherealBeamsHero() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
-              <span className="text-xl font-bold text-white">Humanize AI</span>
+              <span className="text-xl font-bold text-white">DashPier</span>
             </div>
 
             <div className="-mr-6 hidden items-center space-x-1 rounded-full border border-white/10 bg-white/5 p-1 backdrop-blur-xl md:flex">
@@ -514,24 +514,24 @@ export default function EtherealBeamsHero() {
           <div className="mx-auto max-w-4xl text-center">
             <div className="mb-8 inline-flex items-center rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/90 backdrop-blur-xl">
               <Star className="mr-2 h-4 w-4 text-white" />
-              Transform AI text into human writing
+              Write perfect emails in seconds
             </div>
 
             <h1 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Make AI Text
+              Write Perfect
               <br />
               <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                Sound Human
+                Emails Instantly
               </span>
             </h1>
 
             <p className="mx-auto mb-10 max-w-3xl text-lg leading-8 text-white/80 sm:text-xl lg:text-2xl">
-              Transform robotic AI content into natural, authentic human writing that bypasses AI detection.
+              Describe what you need, choose from 40+ tones, and get professional email drafts instantly.
             </p>
 
             <div className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Button size="lg" className="font-semibold shadow-2xl shadow-white/25">
-                Start Humanizing
+                Start Writing
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="lg" className="bg-transparent font-semibold">
@@ -541,12 +541,16 @@ export default function EtherealBeamsHero() {
 
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 sm:grid-cols-3">
               <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-white">99%</div>
-                <div className="text-sm text-white/60">Human Score</div>
+                <div className="mb-2 text-3xl font-bold text-white">3s</div>
+                <div className="text-sm text-white/60">Generation Time</div>
               </div>
               <div className="text-center">
-                <div className="mb-2 text-3xl font-bold text-white">10K+</div>
-                <div className="text-sm text-white/60">Texts Transformed</div>
+                <div className="mb-2 text-3xl font-bold text-white">40+</div>
+                <div className="text-sm text-white/60">Tone Options</div>
+              </div>
+              <div className="text-center">
+                <div className="mb-2 text-3xl font-bold text-white">100K+</div>
+                <div className="text-sm text-white/60">Emails Written</div>
               </div>
               <div className="text-center">
                 <div className="mb-2 text-3xl font-bold text-white">50+</div>
