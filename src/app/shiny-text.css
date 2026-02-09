@@ -1,0 +1,9 @@
+.shiny-text {
+  position: relative;
+  display: inline-block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+.shiny-text:hover {
+  cursor: default;
+}

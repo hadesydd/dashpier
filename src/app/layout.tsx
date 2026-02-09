@@ -21,8 +21,20 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Humanize AI",
-  description: "Humanize your AI generated text",
+  title: "Humanize AI | Transform AI Text to Human-Like Writing",
+  description: "Transform robotic AI-generated text into natural, human-like prose. Perfect for essays, emails, and professional documents. Trusted by 50,000+ students & professionals.",
+  keywords: ["AI text humanizer", "humanize AI text", "AI to human text", "essay writer", "AI detection remover"],
+  authors: [{ name: "Humanize AI" }],
+  openGraph: {
+    title: "Humanize AI | Transform AI Text to Human-Like Writing",
+    description: "Transform robotic AI-generated text into natural, human-like prose. Perfect for essays, emails, and professional documents.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Humanize AI | Transform AI Text to Human-Like Writing",
+    description: "Transform robotic AI-generated text into natural, human-like prose. Trusted by 50,000+ students & professionals.",
+  },
 };
 
 export default function RootLayout({
