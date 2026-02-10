@@ -147,7 +147,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
             </div>
 
             <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#FF6B2C] to-[#FF8F5A]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#60A5FA]">
                 <PenLine className="h-5 w-5 text-white" />
               </div>
               <span className="font-mono text-xl font-bold">DashPier</span>
@@ -167,7 +167,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
             <ShinyText
               text="EMAIL WRITER"
               speed={3}
-              shineColor="#FF6B2C"
+              shineColor="#3B82F6"
               color="#1A1A1A"
               spread={80}
               yoyo={true}
@@ -194,7 +194,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className={`rounded-lg px-3 py-1.5 font-mono text-xs transition-all ${
-                        selectedTone === tone.id ? "bg-[#FF6B2C] text-white" : "bg-[#FAFAFA] hover:bg-[#1A1A1A]/5"
+                        selectedTone === tone.id ? "bg-[#3B82F6] text-white" : "bg-[#FAFAFA] hover:bg-[#1A1A1A]/5"
                       }`}
                     >
                       {tone.name}
@@ -215,7 +215,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       className={`w-full rounded-lg px-3 py-1.5 text-left font-mono text-xs transition-all ${
-                        selectedLength === length.id ? "bg-[#FF6B2C] text-white" : "bg-[#FAFAFA] hover:bg-[#1A1A1A]/5"
+                        selectedLength === length.id ? "bg-[#3B82F6] text-white" : "bg-[#FAFAFA] hover:bg-[#1A1A1A]/5"
                       }`}
                     >
                       {length.name}
@@ -296,7 +296,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
                   className={`flex items-center gap-1.5 rounded-lg px-4 py-1.5 font-mono text-xs font-medium transition-all ${
                     isLoading || !inputText.trim()
                       ? "cursor-not-allowed bg-[#1A1A1A]/10 text-[#1A1A1A]/40"
-                      : "bg-[#FF6B2C] text-white"
+                      : "bg-[#3B82F6] text-white"
                   }`}
                 >
                   {isLoading ? (
@@ -332,7 +332,7 @@ export default function EmailWriterInterface({ onBack }: EmailWriterInterfacePro
             ].map((item, i) => (
               <div key={i} className="rounded-xl border border-black/10 bg-white p-4">
                 <div className="mb-1 flex items-center gap-2">
-                  <item.icon className="h-4 w-4 text-[#FF6B2C]" />
+                  <item.icon className="h-4 w-4 text-[#3B82F6]" />
                   <span className="font-mono text-sm font-semibold">{item.title}</span>
                 </div>
                 <p className="font-mono text-xs text-[#1A1A1A]/50">{item.desc}</p>

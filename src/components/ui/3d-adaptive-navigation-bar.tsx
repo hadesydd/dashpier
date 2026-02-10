@@ -127,7 +127,7 @@ export const PillBase: React.FC<{
                   onClick={() => handleSectionClick(item.href.replace("#", ""))}
                   className="relative font-mono text-xs font-semibold tracking-wider uppercase transition-all duration-200"
                   style={{
-                    color: isActive ? "#FF6B2C" : "rgba(0, 0, 0, 0.65)",
+                    color: isActive ? "#3B82F6" : "rgba(0, 0, 0, 0.65)",
                     padding: "8px 12px",
                     background: "transparent",
                     border: "none",
@@ -148,7 +148,7 @@ export const PillBase: React.FC<{
                     <motion.div
                       layoutId="activeIndicator"
                       className="absolute right-0 -bottom-1 left-0 h-0.5 rounded-full"
-                      style={{ background: "#FF6B2C" }}
+                      style={{ background: "#3B82F6" }}
                     />
                   )}
                   {item.label}

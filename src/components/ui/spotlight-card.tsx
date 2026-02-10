@@ -3,12 +3,11 @@ import React, { ReactNode, useEffect, useRef } from "react";
 interface SpotlightCardProps {
   children: ReactNode;
   className?: string;
-  glowColor?: "orange" | "blue" | "purple" | "green" | "red";
+  glowColor?: "blue" | "purple" | "green" | "red";
   size?: "sm" | "md" | "lg";
 }
 
 const glowColorMap = {
-  orange: { base: 30, spread: 200 },
   blue: { base: 220, spread: 200 },
   purple: { base: 280, spread: 300 },
   green: { base: 120, spread: 200 },
@@ -24,7 +23,7 @@ const sizeMap = {
 export default function SpotlightCard({
   children,
   className = "",
-  glowColor = "orange",
+  glowColor = "blue",
   size = "md",
 }: SpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);

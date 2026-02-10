@@ -71,9 +71,9 @@ export default function DockMorph({ items, className, position = "bottom" }: Doc
                         }}
                         className={cn(
                           "absolute inset-0 -z-10 rounded-full",
-                          "bg-gradient-to-tr from-orange-500/40 via-orange-300/20 to-transparent",
+                          "bg-gradient-to-tr from-blue-500/40 via-blue-300/20 to-transparent",
                           "backdrop-blur-2xl",
-                          "shadow-md dark:shadow-orange-500/20"
+                          "shadow-md dark:shadow-blue-500/20"
                         )}
                       />
                     )}
