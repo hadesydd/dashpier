@@ -30,6 +30,7 @@ import {
 import { Button } from "@/components/ui/button";
 
 import { PillBase } from "./3d-adaptive-navigation-bar";
+import { FeatureCard } from "./feature-card";
 import ShinyText from "./shiny-text";
 import SpotlightCard from "./spotlight-card";
 
@@ -76,32 +77,26 @@ const useCases = [
 
 const features = [
   {
-    icon: Wand2,
     label: "AI-Powered Writing",
     description: "Simply describe what you want to achieve, and our AI crafts the perfect email draft in seconds.",
   },
   {
-    icon: Target,
     label: "40+ Tone Options",
     description: "From formal to casual, empathetic to assertive - choose the tone that fits every situation.",
   },
   {
-    icon: Zap,
     label: "Instant Generation",
     description: "Get professional email drafts in under 3 seconds. No more staring at blank screens.",
   },
   {
-    icon: FileText,
     label: "50+ Email Templates",
     description: "Pre-built templates for every scenario - from job applications to difficult conversations.",
   },
   {
-    icon: RefreshCw,
     label: "Unlimited Revisions",
     description: "Regenerate and refine until your email is perfect. No limits on how many times you edit.",
   },
   {
-    icon: BarChart,
     label: "Context Awareness",
     description: "Our AI understands your context and tailors length, formality, and approach accordingly.",
   },
@@ -637,19 +632,11 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               {features.map((feature, index) => (
                 <motion.div
                   key={feature.label}
-                  initial={{ opacity: 0, y: 50 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 2.8 + index * 0.1, duration: 0.5 }}
                 >
-                  <SpotlightCard glowColor="blue" className="h-full cursor-pointer !rounded-2xl p-0">
-                    <div className="flex h-full flex-col items-center rounded-xl border border-black/10 bg-black/5 p-8 text-center">
-                      <div className="mb-6 rounded-2xl bg-[#3B82F6]/10 p-4">
-                        <feature.icon className="h-8 w-8 text-[#3B82F6]" />
-                      </div>
-                      <h3 className="mb-4 font-mono text-xl font-bold">{feature.label}</h3>
-                      <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/50">{feature.description}</p>
-                    </div>
-                  </SpotlightCard>
+                  <FeatureCard title={feature.label} description={feature.description} />
                 </motion.div>
               ))}
             </motion.div>
