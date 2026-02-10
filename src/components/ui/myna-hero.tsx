@@ -32,7 +32,6 @@ import { Button } from "@/components/ui/button";
 import { PillBase } from "./3d-adaptive-navigation-bar";
 import { FeatureCard } from "./feature-card";
 import ShinyText from "./shiny-text";
-import SpotlightCard from "./spotlight-card";
 
 const useCases = [
   {
@@ -504,34 +503,32 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               </p>
             </motion.div>
 
-            <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-3">
               {useCases.map((useCase, index) => (
                 <motion.div
                   key={useCase.title}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
                 >
-                  <SpotlightCard glowColor="blue" className="h-full cursor-pointer !rounded-3xl p-0">
-                    <div className="h-full rounded-2xl border border-black/10 bg-white p-6">
-                      <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#3B82F6]/10">
-                        <useCase.icon className="h-7 w-7 text-[#3B82F6]" />
-                      </div>
-                      <h3 className="mb-3 font-mono text-xl font-bold">{useCase.title}</h3>
-                      <p className="mb-4 font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{useCase.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {useCase.examples.map((example) => (
-                          <span
-                            key={example}
-                            className="rounded-full bg-[#3B82F6]/10 px-3 py-1 font-mono text-xs text-[#3B82F6]"
-                          >
-                            {example}
-                          </span>
-                        ))}
-                      </div>
+                  <div className="group relative rounded-xl border border-black/10 bg-white p-6 transition-all hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                      <useCase.icon className="h-6 w-6 text-blue-500" />
                     </div>
-                  </SpotlightCard>
+                    <h3 className="mb-2 font-mono text-lg font-bold text-[#1A1A1A]">{useCase.title}</h3>
+                    <p className="mb-4 font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{useCase.description}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {useCase.examples.map((example) => (
+                        <span
+                          key={example}
+                          className="rounded-full bg-blue-500/10 px-3 py-1 font-mono text-xs text-blue-500"
+                        >
+                          {example}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </div>
@@ -560,44 +557,36 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               </p>
             </motion.div>
 
-            <div className="mx-auto max-w-6xl">
-              <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4">
-                {tones.map((tone, index) => (
-                  <motion.div
-                    key={tone.name}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.05, duration: 0.3 }}
-                    className="group cursor-pointer"
-                    onMouseEnter={() => setActiveTone(index)}
-                  >
-                    <div
-                      className={`relative overflow-hidden rounded-2xl bg-gradient-to-br ${tone.color} p-6 text-white transition-all duration-300 group-hover:shadow-lg group-hover:shadow-${tone.color.split("-")[1]}/30`}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                      <div className="relative z-10">
-                        <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-                          <Mail className="h-5 w-5" />
-                        </div>
-                        <h3 className="font-mono text-lg font-bold">{tone.name}</h3>
-                        <p className="mt-2 font-mono text-xs opacity-80">
-                          {tone.name === "Professional" &&
-                            "Business correspondence, formal requests, workplace communication"}
-                          {tone.name === "Friendly" && "Casual updates, team messages, relaxed professional tone"}
-                          {tone.name === "Formal" && "Legal documents, official requests, academic correspondence"}
-                          {tone.name === "Casual" && "Peer communication, quick updates, internal team messages"}
-                          {tone.name === "Empathetic" &&
-                            "Customer support, difficult situations, showing understanding"}
-                          {tone.name === "Assertive" && "Setting boundaries, urgent requests, standing your ground"}
-                          {tone.name === "Persuasive" && "Sales pitches, proposals, convincing arguments"}
-                          {tone.name === "Apologetic" && "Service failures, mistakes, requesting understanding"}
-                        </p>
-                      </div>
+            <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {tones.map((tone, index) => (
+                <motion.div
+                  key={tone.name}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  whileHover={{ y: -4 }}
+                  className="cursor-pointer"
+                >
+                  <div className="relative rounded-xl border border-black/10 bg-white p-5 transition-all hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-500/10">
+                      <Mail className="h-5 w-5 text-blue-500" />
                     </div>
-                  </motion.div>
-                ))}
-              </div>
+                    <h3 className="font-mono text-base font-bold text-[#1A1A1A]">{tone.name}</h3>
+                    <p className="mt-2 font-mono text-xs leading-relaxed text-[#1A1A1A]/60">
+                      {tone.name === "Professional" &&
+                        "Business correspondence, formal requests, workplace communication"}
+                      {tone.name === "Friendly" && "Casual updates, team messages, relaxed professional tone"}
+                      {tone.name === "Formal" && "Legal documents, official requests, academic correspondence"}
+                      {tone.name === "Casual" && "Peer communication, quick updates, internal team messages"}
+                      {tone.name === "Empathetic" && "Customer support, difficult situations, showing understanding"}
+                      {tone.name === "Assertive" && "Setting boundaries, urgent requests, standing your ground"}
+                      {tone.name === "Persuasive" && "Sales pitches, proposals, convincing arguments"}
+                      {tone.name === "Apologetic" && "Service failures, mistakes, requesting understanding"}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
@@ -645,24 +634,25 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
 
         <section className="bg-[#F5F5F5] py-16">
           <div className="container mx-auto px-4">
-            <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+            <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
               {testimonials.map((testimonial, index) => (
                 <motion.div
                   key={testimonial.author}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                  className="rounded-2xl bg-white p-6 shadow-lg"
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
+                  whileHover={{ y: -4 }}
+                  className="cursor-pointer rounded-xl border border-black/10 bg-white p-6 shadow-sm transition-all hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10"
                 >
-                  <div className="mb-4 flex gap-1">
+                  <div className="mb-3 flex gap-1">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-[#3B82F6] text-[#3B82F6]" />
+                      <Star key={i} className="h-4 w-4 fill-blue-500 text-blue-500" />
                     ))}
                   </div>
                   <p className="mb-4 font-mono text-sm leading-relaxed text-[#1A1A1A]">"{testimonial.quote}"</p>
                   <div>
-                    <p className="font-mono text-sm font-bold">{testimonial.author}</p>
+                    <p className="font-mono text-sm font-bold text-[#1A1A1A]">{testimonial.author}</p>
                     <p className="font-mono text-xs text-[#1A1A1A]/50">{testimonial.role}</p>
                   </div>
                 </motion.div>
@@ -826,101 +816,78 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               viewport={{ once: true }}
               className="mb-12 flex justify-center"
             >
-              <div className="shadow-premium inline-flex items-center gap-3 rounded-full border border-black/10 bg-white p-1.5">
+              <div className="inline-flex items-center gap-1 rounded-full border border-black/10 bg-white p-1">
                 <button
                   onClick={() => setIsYearly(false)}
-                  className={`rounded-full px-6 py-2 font-mono text-sm transition-all ${
-                    !isYearly ? "bg-[#3B82F6] text-white" : "text-[#1A1A1A]/60 hover:text-[#1A1A1A]"
+                  className={`rounded-full px-5 py-2 font-mono text-sm transition-all ${
+                    !isYearly ? "bg-blue-500 text-white" : "text-[#1A1A1A]/60 hover:text-[#1A1A1A]"
                   }`}
                 >
                   Monthly
                 </button>
                 <button
                   onClick={() => setIsYearly(true)}
-                  className={`rounded-full px-6 py-2 font-mono text-sm transition-all ${
-                    isYearly ? "bg-[#3B82F6] text-white" : "text-[#1A1A1A]/60 hover:text-[#1A1A1A]"
+                  className={`rounded-full px-5 py-2 font-mono text-sm transition-all ${
+                    isYearly ? "bg-blue-500 text-white" : "text-[#1A1A1A]/60 hover:text-[#1A1A1A]"
                   }`}
                 >
                   Yearly
-                  <span className="ml-2 rounded-full bg-white/20 px-2 py-0.5 text-xs">-20%</span>
+                  <span className="ml-2 rounded-full bg-blue-500/20 px-2 py-0.5 text-xs">-20%</span>
                 </button>
               </div>
             </motion.div>
 
-            <div className="mx-auto grid max-w-6xl gap-8 md:grid-cols-3">
+            <div className="mx-auto grid max-w-6xl gap-6 md:grid-cols-3">
               {pricingPlans.map((plan, index) => (
                 <motion.div
                   key={plan.name}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                  className={`group relative ${plan.highlighted ? "md:-mt-4" : ""}`}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
+                  whileHover={{ y: -4 }}
+                  className={`relative ${plan.highlighted ? "md:-mt-4" : ""}`}
                 >
                   {plan.highlighted && (
                     <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                      <motion.div
-                        animate={{ y: [0, -5, 0] }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="flex items-center gap-1 rounded-full bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] px-4 py-1.5 font-mono text-xs font-semibold text-white"
-                      >
-                        <Star className="h-3 w-3" /> MOST POPULAR
-                      </motion.div>
+                      <span className="rounded-full bg-blue-500 px-4 py-1 font-mono text-xs font-semibold text-white">
+                        MOST POPULAR
+                      </span>
                     </div>
                   )}
                   <div
-                    className={`relative h-full rounded-3xl border bg-white transition-all duration-300 ${
-                      plan.highlighted
-                        ? "border-[#3B82F6]/30 shadow-xl shadow-[#3B82F6]/10"
-                        : "border-black/10 hover:border-[#3B82F6]/30"
-                    }`}
+                    className={`group relative rounded-xl border bg-white p-6 transition-all hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10 ${plan.highlighted ? "border-blue-500/30 shadow-lg shadow-blue-500/10" : "border-black/10"}`}
                   >
-                    <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#3B82F6]/5 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                    <div className="relative z-10 p-8">
-                      <h3 className="mb-2 font-mono text-xl font-bold">{plan.name}</h3>
-                      <p className="mb-6 font-mono text-sm text-[#1A1A1A]/60">{plan.description}</p>
-                      <div className="mb-6">
-                        <div className="flex items-baseline gap-1">
-                          <span className="font-mono text-4xl font-bold">
-                            ${plan.highlighted && isYearly ? Math.floor(plan.price * 0.8) : plan.price}
-                          </span>
-                          <span className="font-mono text-[#1A1A1A]/40">/month</span>
-                        </div>
-                        {plan.highlighted && isYearly && (
-                          <p className="mt-1 font-mono text-xs text-green-600">Billed $182 yearly</p>
-                        )}
+                    <h3 className="mb-2 font-mono text-lg font-bold text-[#1A1A1A]">{plan.name}</h3>
+                    <p className="mb-5 font-mono text-sm text-[#1A1A1A]/60">{plan.description}</p>
+                    <div className="mb-5">
+                      <div className="flex items-baseline gap-1">
+                        <span className="font-mono text-3xl font-bold text-[#1A1A1A]">
+                          ${plan.highlighted && isYearly ? Math.floor(plan.price * 0.8) : plan.price}
+                        </span>
+                        <span className="font-mono text-[#1A1A1A]/40">/month</span>
                       </div>
-                      <ul className="mb-8 space-y-4">
-                        {plan.features.map((feature, i) => (
-                          <motion.li
-                            key={feature}
-                            initial={{ opacity: 0, x: -10 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + i * 0.05 }}
-                            className="flex items-start gap-3"
-                          >
-                            <div className="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/10">
-                              <Check className="h-3 w-3 text-[#3B82F6]" />
-                            </div>
-                            <span className="font-mono text-sm text-[#1A1A1A]/70">{feature}</span>
-                          </motion.li>
-                        ))}
-                      </ul>
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        onClick={onGetStarted}
-                        className={`flex w-full items-center justify-center gap-2 rounded-xl py-4 font-mono font-semibold transition-all ${
-                          plan.highlighted
-                            ? "bg-gradient-to-r from-[#3B82F6] to-[#60A5FA] text-white hover:shadow-lg hover:shadow-[#3B82F6]/25"
-                            : "bg-black/5 text-[#1A1A1A] hover:bg-[#3B82F6]/10 hover:text-[#3B82F6]"
-                        }`}
-                      >
-                        {plan.cta}
-                        <ChevronRight className="h-4 w-4" />
-                      </motion.button>
                     </div>
+                    <ul className="mb-6 space-y-3">
+                      {plan.features.map((feature) => (
+                        <li key={feature} className="flex items-start gap-2">
+                          <Check className="h-4 w-4 shrink-0 text-blue-500" />
+                          <span className="font-mono text-sm text-[#1A1A1A]/70">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      onClick={onGetStarted}
+                      className={`w-full rounded-xl py-3 font-mono text-sm font-semibold transition-all ${
+                        plan.highlighted
+                          ? "bg-blue-500 text-white hover:bg-blue-600"
+                          : "bg-black/5 text-[#1A1A1A] hover:bg-blue-500 hover:text-white"
+                      }`}
+                    >
+                      {plan.cta}
+                    </motion.button>
                   </div>
                 </motion.div>
               ))}
@@ -930,17 +897,16 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mx-auto mt-16 max-w-4xl"
+              className="mx-auto mt-12 max-w-4xl"
             >
-              <div className="rounded-3xl border border-[#3B82F6]/20 bg-gradient-to-r from-[#3B82F6]/10 via-white to-[#3B82F6]/10 p-8 text-center">
-                <div className="mb-4 flex items-center justify-center gap-2">
-                  <Sparkles className="h-5 w-5 text-[#3B82F6]" />
-                  <span className="font-mono text-sm font-semibold text-[#3B82F6]">SATISFACTION GUARANTEE</span>
+              <div className="rounded-2xl border border-black/10 bg-white p-8 text-center">
+                <div className="mb-3 flex items-center justify-center gap-2">
+                  <Sparkles className="h-5 w-5 text-blue-500" />
+                  <span className="font-mono text-sm font-semibold text-blue-500">SATISFACTION GUARANTEE</span>
                 </div>
-                <h3 className="mb-2 font-mono text-xl font-bold">Love Your Emails or It's Free</h3>
-                <p className="mx-auto max-w-xl font-mono text-[#1A1A1A]/60">
-                  Try DashPier risk-free for 7 days. If you don't write better emails, cancel anytime. No questions, no
-                  hassle, no hard feelings.
+                <h3 className="mb-2 font-mono text-lg font-bold text-[#1A1A1A]">Love Your Emails or It's Free</h3>
+                <p className="mx-auto max-w-lg font-mono text-sm text-[#1A1A1A]/60">
+                  Try DashPier risk-free for 7 days. If you don't write better emails, cancel anytime.
                 </p>
               </div>
             </motion.div>
