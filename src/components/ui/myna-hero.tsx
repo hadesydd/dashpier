@@ -695,38 +695,22 @@ export function MynaHero({ onGetStarted }: MynaHeroProps) {
               </p>
             </motion.div>
 
-            <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2 lg:grid-cols-4">
+            <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-4">
               {steps.map((step, index) => (
                 <motion.div
                   key={step.number}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  transition={{ delay: index * 0.1, duration: 0.4 }}
                 >
-                  <SpotlightCard glowColor="blue" className="h-full cursor-pointer !rounded-3xl p-0">
-                    <div className="relative h-full rounded-2xl border border-black/10 bg-white p-6">
-                      <div className="absolute -top-3 -right-3 z-10 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#3B82F6] to-[#60A5FA] shadow-lg">
-                        <span className="font-mono text-xs font-bold text-white">{step.number}</span>
-                      </div>
-                      <div className="mt-2 mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-[#3B82F6]/10">
-                        <step.icon className="h-7 w-7 text-[#3B82F6]" />
-                      </div>
-                      <h3 className="mb-2 font-mono text-lg font-bold">{step.title}</h3>
-                      <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{step.description}</p>
+                  <div className="relative rounded-xl border border-black/10 bg-white p-6 transition-all hover:border-blue-500/30 hover:shadow-lg hover:shadow-blue-500/10">
+                    <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-500/10">
+                      <step.icon className="h-6 w-6 text-blue-500" />
                     </div>
-                  </SpotlightCard>
-                  {index < steps.length - 1 && (
-                    <div className="absolute top-1/2 -right-6 z-20 hidden lg:flex">
-                      <motion.div
-                        animate={{ x: [0, 8, 0] }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[#3B82F6] bg-white shadow-sm"
-                      >
-                        <ArrowRight className="h-4 w-4 text-[#3B82F6]" />
-                      </motion.div>
-                    </div>
-                  )}
+                    <h3 className="mb-2 font-mono text-lg font-bold text-[#1A1A1A]">{step.title}</h3>
+                    <p className="font-mono text-sm leading-relaxed text-[#1A1A1A]/60">{step.description}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
